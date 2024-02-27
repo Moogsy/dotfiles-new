@@ -1,0 +1,24 @@
+{
+    "workspace.library": [
+        "/home/moogs/.config/nvim",
+        "/home/moogs/.local/share/nvim/site",
+        "/home/moogs/.local/share/nvim/lazy/lazy.nvim",
+        "/home/moogs/.local/share/nvim/lazy/nvim-lspconfig",
+        "/home/moogs/.local/share/nvim/lazy/monokai-pro.nvim",
+        "/home/moogs/.local/share/nvim/lazy/nvim-web-devicons",
+        "/home/moogs/.local/share/nvim/lazy/lualine.nvim",
+        "/home/moogs/.local/share/nvim/lazy/rainbow-delimiters.nvim",
+        "/home/moogs/.local/share/nvim/lazy/indent-blankline.nvim",
+        "/home/moogs/.local/share/nvim/lazy/mason-lspconfig.nvim",
+        "/home/moogs/.local/share/nvim/lazy/mason.nvim",
+        "/home/moogs/.local/share/nvim/lazy/coq.artifacts",
+        "/home/moogs/.local/share/nvim/lazy/coq_nvim",
+        "/usr/share/nvim/runtime",
+        "/usr/share/nvim/runtime/pack/dist/opt/matchit",
+        "/usr/lib/nvim",
+        "/home/moogs/.local/state/nvim/lazy/readme",
+        "/home/moogs/.local/share/nvim/lazy/indent-blankline.nvim/after",
+        "${3rd}/luassert/library",
+        "${3rd}/luassert/library"
+    ]
+}
