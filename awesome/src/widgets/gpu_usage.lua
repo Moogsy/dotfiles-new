@@ -1,8 +1,11 @@
 -- Gpu usage widget
-local color = require("src.theme.colors")
 
+local awful = require("awful")
+local color = require("src.theme.colors")
+local dpi = require("beautiful").xresources.apply_dpi
 local utils = require("src.widgets.utils")
-return utils.watch_widget{
+
+local gpu_widget = utils.watch_widget{
     bg = color["Green200"],
     image_filename = "gpu.svg",
     watch_script_filename = "gpu_usage.sh",
@@ -11,3 +14,27 @@ return utils.watch_widget{
         widget:set_text(stdout)
     end
 }
+
+local gpu_tooltip = awful.tooltip{
+    objects = { gpu_widget },
+    text = "",
+    mode = "inside",
+    preferred_alignements = "middle",
+    margins = dpi(10)
+}
+
+gpu_widget:connect_signal(
+    "mouse::enter",
+    function()
+        awful.spawn.easy_async_with_shell(
+            [[lspci | grep -i vga | cut -d ' ' -f5- | sed 's/^/- /']],
+            function(stdout)
+                gpu_tooltip:set_text("Detected GPUs\n" .. stdout)
+            end
+        )
+    end
+)
+
+
+
+return gpu_widget
