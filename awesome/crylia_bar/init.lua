@@ -46,12 +46,13 @@ awful.screen.connect_for_each_screen(
     s.systray = require("src.widgets.systray")(s)
 
     -- s.cpu_usage = require("src.widgets.cpu_info")("usage")
+    s.ram_usage = require("src.widgets.ram_usage")
     s.cpu_usage = require("src.widgets.cpu_usage")
     s.gpu_usage = require("src.widgets.gpu_usage")
 
     require("crylia_bar.left_bar")(s, { s.layoutlist, s.clock, s.date, s.taglist, s.systray })
     require("crylia_bar.center_bar")(s, { s.tasklist })
-    require("crylia_bar.right_bar")(s, { s.network, s.bluetooth, s.audio, s.cpu_usage, s.gpu_usage, s.ram_info, s.battery, s.powerbutton })
+    require("crylia_bar.right_bar")(s, { s.network, s.bluetooth, s.audio, s.cpu_usage, s.gpu_usage, s.ram_usage, s.battery, s.powerbutton })
     require("crylia_bar.dock")(s, user_vars.dock_programs)
 end
 )
