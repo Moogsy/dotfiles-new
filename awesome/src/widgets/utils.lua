@@ -6,7 +6,9 @@ local wibox = require("wibox")
 
 local icon_dir = awful.util.getdir("config") .. "src/assets/icons/"
 
-local function get_imagebox(image_filename)
+local M = {}
+
+function M.get_imagebox(image_filename)
     return {
         id = "icon_margin",
         widget = wibox.container.margin,
@@ -24,7 +26,7 @@ local function get_imagebox(image_filename)
     }
 end
 
-local function get_text_box(watch_script_filename, update_interval)
+function M.get_text_box(watch_script_filename, update_interval)
     return {
         id = "label",
         align = "center",
@@ -36,7 +38,7 @@ local function get_text_box(watch_script_filename, update_interval)
     }
 end
 
-return function(args)
+function M.watch_widget_factory(args)
     return wibox.widget({
         fg = color["Grey900"],
         bg = args.bg,
@@ -53,9 +55,11 @@ return function(args)
                 id = "layout",
                 layout = wibox.layout.fixed.horizontal,
                 spacing = dpi(10),
-                get_imagebox(args.image_filename),
-                get_text_box(args.watch_script_filename, args.update_interval),
+                M.get_imagebox(args.image_filename),
+                M.get_text_box(args.watch_script_filename, args.update_interval),
             },
         }
     })
 end
+
+return M
