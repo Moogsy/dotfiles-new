@@ -50,3 +50,15 @@ keymap(
     opts,
     "Open file or url under cursor into external app"
 )
+
+keymap(
+    'n',
+    '"f',
+    function()
+        local path = vim.fn.expand('%:p')
+        vim.fn.setreg('+', path)
+        vim.notify("Copied " .. path .. " to clipboard")
+    end,
+    opts,
+    "Copy current file path to clipboard"
+)
