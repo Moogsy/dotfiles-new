@@ -74,6 +74,19 @@ local lspconfig = require("lspconfig")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 
+local function get_lua_libraries()
+
+    local libs = {}
+
+    local vim_libs = vim.api.nvim_get_runtime_file("", true)
+    vim.list_extend(libs, vim_libs)
+
+    local awesome_libs = { "/usr/share/awesome/lib/" }
+    vim.list_extend(libs, awesome_libs)
+
+    return libs
+end
+
 local servers = {
     bashls = {},
     clangd = {},
@@ -84,12 +97,24 @@ local servers = {
                 version = 'LuaJIT',
             },
             diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
+                globals = {
+                    'vim',
+                    -- AwesomeWM configuration 
+                    'awful',
+                    'awesome',
+                    'client',
+                    'mouse',
+                    'root',
+                    'screen',
+                    'tag',
+                    'theme',
+                    'wibox',
+                    'naughty'
+                },
             },
             workspace = {
                 -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
+                library = get_lua_libraries(),
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
